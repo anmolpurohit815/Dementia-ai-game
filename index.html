@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MindCare - Memory Match</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MindCare - Cognitive Games</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -15,43 +20,107 @@
 
         <h1>🧠 MindCare</h1>
 
-        <h2>🃏 Memory Match</h2>
+        <h2>Cognitive Games</h2>
 
-        <p>Find all the matching pairs.</p>
+        <p>
+            Choose a game to improve memory,
+            attention and recognition.
+        </p>
 
-        <div class="game-info">
 
-            <div>
-                <strong>Time</strong>
-                <span id="timer">60</span>s
+        <!-- GAME CARDS -->
+
+        <div class="game-selection">
+
+
+            <!-- MEMORY MATCH -->
+
+            <div class="game-card">
+
+                <div class="game-icon">
+                    🃏
+                </div>
+
+                <h3>
+                    Memory Match
+                </h3>
+
+                <p>
+                    Match the same cards
+                    and test your memory.
+                </p>
+
+                <button
+                    onclick="openGame('memory')">
+
+                    Play Game
+
+                </button>
+
             </div>
 
-            <div>
-                <strong>Score</strong>
-                <span id="score">0</span>
+
+            <!-- SEQUENCE MEMORY -->
+
+            <div class="game-card">
+
+                <div class="game-icon">
+                    🔢
+                </div>
+
+                <h3>
+                    Sequence Memory
+                </h3>
+
+                <p>
+                    Remember the number sequence
+                    and enter it correctly.
+                </p>
+
+                <button
+                    onclick="openGame('sequence')">
+
+                    Play Game
+
+                </button>
+
             </div>
 
-            <div>
-                <strong>Mistakes</strong>
-                <span id="mistakes">0</span>
+
+            <!-- OBJECT RECOGNITION -->
+
+            <div class="game-card">
+
+                <div class="game-icon">
+                    👀
+                </div>
+
+                <h3>
+                    Object Recognition
+                </h3>
+
+                <p>
+                    Identify the object and
+                    select the correct answer.
+                </p>
+
+                <button
+                    onclick="openGame('object')">
+
+                    Play Game
+
+                </button>
+
             </div>
 
-            <div>
-                <strong>Accuracy</strong>
-                <span id="accuracy">0%</span>
-            </div>
 
         </div>
 
-        <div id="gameBoard" class="game-board"></div>
-
-        <button id="restartBtn">
-            Restart Game
-        </button>
-
     </div>
+
 
     <script src="script.js"></script>
 
 </body>
+
 </html>

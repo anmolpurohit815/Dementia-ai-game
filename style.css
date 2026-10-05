@@ -4,46 +4,100 @@
     padding: 0;
 }
 
+
 body {
     font-family: Arial, sans-serif;
+
     background: #f4f7f9;
+
     min-height: 100vh;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
+    padding: 20px;
 }
 
+
 .container {
-    width: 90%;
-    max-width: 700px;
+    width: 95%;
+
+    max-width: 850px;
+
     text-align: center;
 
     background: white;
+
     padding: 30px;
+
     border-radius: 20px;
 
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
+
 h1 {
     font-size: 42px;
+
     margin-bottom: 10px;
 }
+
 
 h2 {
     font-size: 32px;
+
     margin-bottom: 10px;
 }
 
+
 p {
     font-size: 20px;
+
     margin-bottom: 25px;
 }
 
+
+/* Difficulty */
+
+.difficulty-section {
+    margin-bottom: 25px;
+}
+
+
+.difficulty-section label {
+    display: block;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+
+#difficulty {
+    padding: 10px 20px;
+
+    font-size: 18px;
+
+    border: 2px solid #ccc;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+
+/* Game Information */
+
 .game-info {
     display: flex;
+
     justify-content: space-around;
+
     gap: 15px;
 
     margin-bottom: 25px;
@@ -51,16 +105,29 @@ p {
     font-size: 18px;
 }
 
+
 .game-info div {
     display: flex;
+
     flex-direction: column;
+
     gap: 5px;
 }
 
+
 .game-info span {
-    font-size: 22px;
+    font-size: 24px;
+
     font-weight: bold;
 }
+
+
+.game-info small {
+    font-size: 14px;
+}
+
+
+/* Game Board */
 
 .game-board {
     display: grid;
@@ -69,9 +136,13 @@ p {
 
     gap: 12px;
 
-    max-width: 500px;
+    max-width: 600px;
+
     margin: auto;
 }
+
+
+/* Cards */
 
 .card {
     height: 100px;
@@ -81,7 +152,9 @@ p {
     border-radius: 12px;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     font-size: 40px;
@@ -89,23 +162,98 @@ p {
     cursor: pointer;
 
     user-select: none;
+
+    transition: transform 0.2s;
 }
+
+
+.card:hover {
+    transform: scale(1.03);
+}
+
 
 .card.flipped,
 .card.matched {
     background: white;
 }
 
-#restartBtn {
-    margin-top: 25px;
 
-    padding: 14px 30px;
+/* Buttons */
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+
+button {
+    padding: 14px 25px;
 
     font-size: 20px;
+
     font-weight: bold;
 
     border: none;
+
     border-radius: 10px;
 
     cursor: pointer;
+}
+
+
+#startBtn {
+    background: #d9f2d9;
+}
+
+
+#restartBtn {
+    background: #eeeeee;
+}
+
+
+/* Medium Board */
+
+.game-board.medium {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+/* Hard Board */
+
+.game-board.hard {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    .game-info {
+        flex-wrap: wrap;
+    }
+
+    .card {
+        height: 75px;
+
+        font-size: 30px;
+    }
+
 }

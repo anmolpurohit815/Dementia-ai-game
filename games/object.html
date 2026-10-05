@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MindCare - Object Recognition</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🧠 MindCare</h1>
+
+        <h2>👀 Object Recognition</h2>
+
+        <p>
+            Look at the object and select the correct answer.
+        </p>
+
+
+        <!-- Difficulty -->
+
+        <div class="difficulty-section">
+
+            <label for="difficulty">
+                Select Difficulty
+            </label>
+
+            <select id="difficulty">
+
+                <option value="easy">
+                    Easy
+                </option>
+
+                <option value="medium">
+                    Medium
+                </option>
+
+                <option value="hard">
+                    Hard
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Game Information -->
+
+        <div class="game-info">
+
+            <div>
+
+                <strong>Score</strong>
+
+                <span id="score">
+                    0
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>Mistakes</strong>
+
+                <span id="mistakes">
+                    0
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>Accuracy</strong>
+
+                <span id="accuracy">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>Time</strong>
+
+                <span id="timer">
+                    0
+                </span>
+
+                <small>
+                    seconds
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Round -->
+
+        <h3 id="roundDisplay">
+            Round 0 / 10
+        </h3>
+
+
+        <!-- Object -->
+
+        <div id="objectArea">
+
+            <div id="objectDisplay">
+                Press Start Game
+            </div>
+
+        </div>
+
+
+        <!-- Options -->
+
+        <div id="optionsArea">
+
+            <button class="option-btn"
+                    id="option1">
+                Option 1
+            </button>
+
+            <button class="option-btn"
+                    id="option2">
+                Option 2
+            </button>
+
+            <button class="option-btn"
+                    id="option3">
+                Option 3
+            </button>
+
+            <button class="option-btn"
+                    id="option4">
+                Option 4
+            </button>
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div class="buttons">
+
+            <button id="startBtn">
+                Start Game
+            </button>
+
+            <button id="restartBtn">
+                Restart Game
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="object.js"></script>
+
+</body>
+
+</html>
