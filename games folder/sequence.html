@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MindCare - Sequence Memory</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🧠 MindCare</h1>
+
+        <h2>🔢 Sequence Memory</h2>
+
+        <p>
+            Remember the sequence and enter it in the same order.
+        </p>
+
+
+        <!-- Difficulty -->
+
+        <div class="difficulty-section">
+
+            <label for="difficulty">
+                Select Difficulty
+            </label>
+
+            <select id="difficulty">
+
+                <option value="easy">
+                    Easy
+                </option>
+
+                <option value="medium">
+                    Medium
+                </option>
+
+                <option value="hard">
+                    Hard
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Game Information -->
+
+        <div class="game-info">
+
+            <div>
+                <strong>Score</strong>
+                <span id="score">0</span>
+            </div>
+
+            <div>
+                <strong>Mistakes</strong>
+                <span id="mistakes">0</span>
+            </div>
+
+            <div>
+                <strong>Accuracy</strong>
+                <span id="accuracy">0%</span>
+            </div>
+
+            <div>
+                <strong>Time</strong>
+                <span id="timer">0</span>
+                <small>seconds</small>
+            </div>
+
+        </div>
+
+
+        <!-- Sequence Display -->
+
+        <div id="sequenceArea">
+
+            <h3>Remember This Sequence</h3>
+
+            <div id="sequenceDisplay">
+                Press Start Game
+            </div>
+
+        </div>
+
+
+        <!-- User Input -->
+
+        <div id="inputArea">
+
+            <h3>Enter the Sequence</h3>
+
+            <input
+                type="text"
+                id="sequenceInput"
+                placeholder="Example: 3 7 2"
+                autocomplete="off"
+            >
+
+            <button id="submitBtn">
+                Submit Answer
+            </button>
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div class="buttons">
+
+            <button id="startBtn">
+                Start Game
+            </button>
+
+            <button id="restartBtn">
+                Restart Game
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="sequence.js"></script>
+
+</body>
+
+</html>
