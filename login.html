@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindCare - Login & Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-card {
+            max-width: 480px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .auth-tabs {
+            display: flex;
+            background: #f1f5f9;
+            padding: 5px;
+            border-radius: 14px;
+            margin-bottom: 24px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px 16px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #64748b;
+            background: transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: none;
+        }
+
+        .auth-tab.active {
+            background: #ffffff;
+            color: #1e3a8a;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 16px;
+            font-family: inherit;
+            color: #0f172a;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .auth-submit-btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 17px;
+            font-weight: 700;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px -4px rgba(37, 99, 235, 0.35);
+        }
+
+        .auth-submit-btn:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+        }
+
+        .quick-demo-box {
+            background: #f8fafc;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-top: 22px;
+            font-size: 13px;
+            color: #475569;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quick-demo-btn {
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 700;
+            background: #e2e8f0;
+            color: #1e293b;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: none;
+        }
+
+        .quick-demo-btn:hover {
+            background: #cbd5e1;
+            transform: none;
+        }
+
+        .auth-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .auth-footer a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .alert-box {
+            display: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+        }
+
+        .alert-success {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+        }
+
+        .db-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container auth-card">
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <div class="game-icon" style="margin: 0 auto 15px auto; width: 90px; height: 90px; font-size: 52px;">
+                🧠
+            </div>
+            <h1>MindCare</h1>
+            <p style="margin-bottom: 10px;">Player Authentication & Profile</p>
+            <span class="db-badge">🗄️ MySQL Workbench Compatible</span>
+        </div>
+
+        <div id="alertBox" class="alert-box"></div>
+
+        <!-- TABS -->
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">
+                Sign In
+            </button>
+            <button class="auth-tab" id="tabRegister" onclick="switchTab('register')">
+                Create Account
+            </button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="loginUsername">Username or Email</label>
+                <input type="text" id="loginUsername" class="form-control" placeholder="Enter username or email" required autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" class="form-control" placeholder="Enter password" required autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="auth-submit-btn" id="btnLogin">
+                Sign In to Play
+            </button>
+
+            <!-- Quick Demo Credentials Box -->
+            <div class="quick-demo-box">
+                <div>
+                    <strong>Demo Account:</strong> player1 / password123
+                </div>
+                <button type="button" class="quick-demo-btn" onclick="fillDemoCredentials()">
+                    Auto-fill
+                </button>
+            </div>
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form id="registerForm" onsubmit="handleRegister(event)" style="display: none;">
+            <div class="form-group">
+                <label for="regFullName">Full Name</label>
+                <input type="text" id="regFullName" class="form-control" placeholder="e.g. John Doe" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="regUsername">Username</label>
+                    <input type="text" id="regUsername" class="form-control" placeholder="username" required autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="regAge">Age</label>
+                    <input type="number" id="regAge" class="form-control" placeholder="e.g. 65" min="1" max="120" value="65">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="regEmail">Email Address</label>
+                <input type="email" id="regEmail" class="form-control" placeholder="user@example.com" required autocomplete="email">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" class="form-control" placeholder="Min 6 characters" minlength="6" required autocomplete="new-password">
+                </div>
+
+                <div class="form-group">
+                    <label for="regGender">Gender</label>
+                    <select id="regGender" class="form-control" style="cursor: pointer;">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other" selected>Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="auth-submit-btn" id="btnRegister">
+                Create Account & Play
+            </button>
+        </form>
+
+        <!-- FOOTER LINKS -->
+        <div class="auth-footer">
+            <p style="margin-bottom: 6px;">
+                Want to play without logging in?
+                <a href="index.html">Continue as Guest &rarr;</a>
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        const API_BASE = "http://127.0.0.1:5000";
+
+        function switchTab(tab) {
+            const loginForm = document.getElementById("loginForm");
+            const regForm = document.getElementById("registerForm");
+            const tabLogin = document.getElementById("tabLogin");
+            const tabRegister = document.getElementById("tabRegister");
+            const alertBox = document.getElementById("alertBox");
+
+            alertBox.style.display = "none";
+
+            if (tab === "login") {
+                loginForm.style.display = "block";
+                regForm.style.display = "none";
+                tabLogin.classList.add("active");
+                tabRegister.classList.remove("active");
+            } else {
+                loginForm.style.display = "none";
+                regForm.style.display = "block";
+                tabLogin.classList.remove("active");
+                tabRegister.classList.add("active");
+            }
+        }
+
+        function showAlert(msg, isError = true) {
+            const box = document.getElementById("alertBox");
+            box.textContent = msg;
+            box.className = "alert-box " + (isError ? "alert-error" : "alert-success");
+            box.style.display = "block";
+        }
+
+        function fillDemoCredentials() {
+            document.getElementById("loginUsername").value = "player1";
+            document.getElementById("loginPassword").value = "password123";
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const usernameOrEmail = document.getElementById("loginUsername").value.trim();
+            const password = document.getElementById("loginPassword").value;
+            const btn = document.getElementById("btnLogin");
+
+            btn.disabled = true;
+            btn.textContent = "Signing In...";
+
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        username_or_email: usernameOrEmail,
+                        password: password
+                    })
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.status === "success") {
+                    showAlert("Login successful! Redirecting...", false);
+                    localStorage.setItem("mindcare_user", JSON.stringify(data.user));
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 800);
+                } else {
+                    showAlert(data.error || "Login failed. Please check credentials.");
+                    btn.disabled = false;
+                    btn.textContent = "Sign In to Play";
+                }
+            } catch (err) {
+                showAlert("Cannot connect to backend server. Make sure Flask is running.");
+                btn.disabled = false;
+                btn.textContent = "Sign In to Play";
+            }
+        }
+
+        async function handleRegister(e) {
+            e.preventDefault();
+            const fullName = document.getElementById("regFullName").value.trim();
+            const username = document.getElementById("regUsername").value.trim();
+            const email = document.getElementById("regEmail").value.trim();
+            const password = document.getElementById("regPassword").value;
+            const age = parseInt(document.getElementById("regAge").value) || 0;
+            const gender = document.getElementById("regGender").value;
+            const btn = document.getElementById("btnRegister");
+
+            btn.disabled = true;
+            btn.textContent = "Creating Account...";
+
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/register`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        full_name: fullName,
+                        username: username,
+                        email: email,
+                        password: password,
+                        age: age,
+                        gender: gender
+                    })
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.status === "success") {
+                    showAlert("Account created! Redirecting...", false);
+                    localStorage.setItem("mindcare_user", JSON.stringify(data.user));
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 800);
+                } else {
+                    showAlert(data.error || "Registration failed.");
+                    btn.disabled = false;
+                    btn.textContent = "Create Account & Play";
+                }
+            } catch (err) {
+                showAlert("Cannot connect to backend server.");
+                btn.disabled = false;
+                btn.textContent = "Create Account & Play";
+            }
+        }
+
+        // Check if user already logged in
+        window.addEventListener("DOMContentLoaded", () => {
+            const saved = localStorage.getItem("mindcare_user");
+            if (saved) {
+                try {
+                    const user = JSON.parse(saved);
+                    if (user && user.username) {
+                        showAlert(`Already logged in as ${user.full_name || user.username}. Redirecting...`, false);
+                        setTimeout(() => { window.location.href = "index.html"; }, 1000);
+                    }
+                } catch(e) {}
+            }
+        });
+    </script>
+
+</body>
+
+</html>
